@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+	default-lazy-init="false">
+	<bean lazy-init="true" id="bossForOuterLotteryPrizeService" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+		<property name="wsdlDocumentUrl" value="${xboss1.ws.url}/BossForOuterLotteryPrizeService?wsdl" />
+		<property name="serviceName" value="BossForOuterLotteryPrizeService" />
+		<property name="portName" value="BossForOuterLotteryPrizeServiceEndpointPort" />
+		<property name="serviceInterface" value="com.xinwei.boss.api.feemanager.service.BossForOuterLotteryPrizeService" />
+		<property name="namespaceUri" value="http://service.feemanager.api.boss.xinwei.com/" />
+	</bean>
+</beans>

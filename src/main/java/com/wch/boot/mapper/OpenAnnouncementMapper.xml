@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wch.boot.mapper.OpenAnnouncementMapper">
+	<insert id="save" parameterType="com.wch.boot.domain.OpenAnnouncement">
+		insert into
+		nnl_open_announcement(period_number,bet_number,award_level,award_odds,max_award_amount,can_cash,security_check,create_time)
+		values(#{periodNumber},#{betNumber},#{awardLevel},#{awardOdds},#{maxAwardAmount},#{canCash},#{securityCheck},#{createTime})
+	</insert>
+
+	<select id="queryOpenAnnouncement" resultType="com.wch.boot.domain.OpenAnnouncement">
+		select
+		id as id,
+		period_number as periodNumber,
+		bet_number as betNumber,
+		award_level as awardLevel,
+		award_odds as awardOdds,
+		max_award_amount as maxAwardAmount,
+		can_cash as canCash,
+		security_check as securityCheck,
+		create_time as createTime
+		from nnl_open_announcement where can_cash = 1 
+	</select>
+
+	<insert id="transferAnnouncementToHistory">
+		insert into
+		nnl_open_announcement_his(
+		period_number,bet_number,award_level,award_odds,max_award_amount,can_cash,security_check,create_time)
+		(select	period_number,bet_number,award_level,award_odds,max_award_amount,can_cash,security_check,create_time from nnl_open_announcement)
+	</insert>
+	
+	<delete id="cleanOpenAnnouncement">
+		delete from nnl_open_announcement 
+	</delete>
+</mapper>

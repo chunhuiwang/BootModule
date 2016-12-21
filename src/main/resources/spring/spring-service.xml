@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd"
+	default-lazy-init="false">
+
+	<!-- 处理消息响应，可以配置多组 -->
+	<bean id="cashedConsumerConrtoller"
+		class="com.xinwei.nnl.notify.controller.impl.NotifyConsumerControllerImpl">
+		<!-- 主题 -->
+		<constructor-arg index="0" value="${mqtt.topic.cashedAck}" />
+		<!-- 是否需要取数据 -->
+		<constructor-arg index="1" value="true" />
+		<!--线程数 -->
+		<constructor-arg index="2" value="1" />
+		<!-- 队列长度 -->
+		<constructor-arg index="3" value="1000" />
+		<property name="notifyConsumerService" ref="awardCashedConsumerServiceImpl" />
+	</bean>
+	<bean id="openConsumerConrtoller"
+		class="com.xinwei.nnl.notify.controller.impl.NotifyConsumerControllerImpl">
+		<!-- 主题 -->
+		<constructor-arg index="0" value="${mqtt.topic.awardAck}" />
+		<!-- 是否需要取数据 -->
+		<constructor-arg index="1" value="true" />
+		<!--线程数 -->
+		<constructor-arg index="2" value="1" />
+		<!-- 队列长度 -->
+		<constructor-arg index="3" value="1000" />
+		<property name="notifyConsumerService" ref="awardOpenConsumerServiceImpl" />
+	</bean>
+	<bean id="orderConsumerConrtoller"
+		class="com.xinwei.nnl.notify.controller.impl.NotifyConsumerControllerImpl">
+		<!-- 主题 -->
+		<constructor-arg index="0" value="${mqtt.topic.order}" />
+		<!-- 是否需要取数据 -->
+		<constructor-arg index="1" value="true" />
+		<!--线程数 -->
+		<constructor-arg index="2" value="1" />
+		<!-- 队列长度 -->
+		<constructor-arg index="3" value="1000" />
+		<property name="notifyConsumerService" ref="awardOrderConsumerServiceImpl" />
+	</bean>
+
+</beans>
